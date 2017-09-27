@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 COMMAND=$@
-CLI_DATA="$TG_HOME/.telegram-cli"
+CLI_DATA="${TG_HOME}/.telegram-cli"
 echo "[RUN] Will run command '$COMMAND' after authentification."
 
 # Droits sur volume # Whatever that means.
@@ -30,10 +30,13 @@ fi
 
 checkauth
 
+files=ls
+echo $files
+
 while ((ok == 0)); do
   echo "[RUN] Not authenticated. Running telegram-CLI"
   echo ""
-  $TG_CLI -k $TG_PUBKEY --exec safe_quit --username="$TG_USER"
+  $TG_CLI -k $TG_PUBKEY  --username="$TG_USER"
   checkauth
 done
 
